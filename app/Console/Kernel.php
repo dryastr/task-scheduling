@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('add:user')->everyMinute();
         $schedule->command('app:send-task-reminders')->everyMinute();
+        $schedule->command('app:tasks-daraya')->everyMinute();
     }
 
     /**

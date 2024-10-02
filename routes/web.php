@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\TasksClientController;
 use App\Http\Controllers\user\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,4 +43,6 @@ Route::middleware(['auth', 'role.user'])->group(function () {
     Route::resource('tasks', TaskController::class);
     Route::patch('/tasks/{task}/proses', [TaskController::class, 'markAsProses'])->name('tasks.markAsProses');
     Route::patch('/tasks/{task}/selesai', [TaskController::class, 'markAsSelesai'])->name('tasks.markAsSelesai');
+
+    Route::get('/tasks-api-client', [TasksClientController::class, 'getTasksFromApi'])->name('tasks-api-client.getTasksFromApi');
 });

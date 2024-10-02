@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/run-cron-job/{token}', function ($token) {
+    if ($token !== env('CRON_TOKEN')) {
+        abort(403, 'Unauthorized');
+    }
+
+    Artisan::call('schedule:run');
+    return 'Cron job executed';
 });
