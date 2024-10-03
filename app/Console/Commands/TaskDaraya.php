@@ -63,11 +63,11 @@ class TaskDaraya extends Command
 
     protected function sendEmailNotification($task)
     {
-        Mail::raw("Pengingat: {$task['title']}\nDeskripsi: {$task['description']}\nDeadline: {$task['deadline']}", function ($message) use ($task) {
+        Mail::raw("Pengingat: TUGAS DARAYA.ID\nDeskripsi: {$task['description']}\nDeadline: {$task['deadline']}", function ($message) use ($task) {
             $message->to('daraya@harakirimail.com')
-                ->subject('Notifikasi Tugas: ' . $task['title']);
+                ->subject('Notifikasi Tugas: ' . $task['description']);
         });
 
-        Log::info('Email notification sent for task: ' . $task['title']);
+        Log::info('Email notification sent for task: ' . $task['description']);
     }
 }

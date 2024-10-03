@@ -53,7 +53,7 @@
             </li>
 
             @if (auth()->user()->role->name == 'user')
-                <li class="sidebar-item has-sub {{ Request::is('tasks*') ? 'active' : '' }}">
+                <li class="sidebar-item has-sub {{ Request::is('tasks') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-card-checklist"></i>
                         <span>Penugasan</span>
@@ -71,17 +71,11 @@
             @endif
 
             @if (auth()->user()->role->name == 'user')
-                <li class="sidebar-item has-sub {{ Request::is('tasks-api-client*') ? 'active' : '' }}">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-card-checklist"></i>
-                        <span>Penugasan API</span>
+                <li class="sidebar-item {{ Request::is('tasks-api-client*') ? 'active' : '' }}">
+                    <a href="{{ route('tasks-api-client.getTasksFromApi') }}" class='sidebar-link'>
+                        <i class="bi bi-fire"></i>
+                        <span>DARAYA API</span>
                     </a>
-
-                    <ul class="submenu">
-                        <li class="submenu-item {{ Request::routeIs('tasks-api-client.getTasksFromApi') ? 'active' : '' }}">
-                            <a href="{{ route('tasks-api-client.getTasksFromApi') }}" class="submenu-link">Daftar Penugasan API</a>
-                        </li>
-                    </ul>
                 </li>
             @endif
 
